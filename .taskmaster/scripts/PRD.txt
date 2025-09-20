@@ -1,0 +1,399 @@
+Smart Tourist Safety Monitoring & Incident Response System
+Product Requirements Document (PRD)
+1. Project Overview
+Project Name: Smart Tourist Safety Monitoring & Incident Response System
+Development Tool: Claude Code
+Project Type: Full-stack safety monitoring platform with offline emergency capabilities
+2. System Architecture & Technology Stack
+Core Technologies
+•	Geofencing Engine: Tile38 (Redis-based geolocation database)
+•	Database: Supabase with Supabase MCP integration
+•	Authentication: Email-based auth via Supabase with Supabase MCP
+•	User ID Generation: Blockchain-based IDs via Supabase with Supabase MCP
+•	Admin UI Framework: shadcn MCP for component library
+•	Mobile App: React Native with Expo
+•	Mapping Service: OpenStreetMap
+•	AI Integration: Gemini API for behavioral analysis and incident detection
+•	Offline Emergency System: BitChat peer-to-peer technology for offline alerts
+System Components
+1.	Admin Web Dashboard (Web-based with offline capabilities)
+2.	Tourist Mobile Application (React Native/Expo)
+3.	Backend API Services (Supabase + Tile38 integration)
+4.	Real-time Monitoring System (WebSocket connections)
+5.	AI Analysis Engine (Gemini API integration)
+6.	Offline Emergency Network (BitChat P2P system)
+3. Feature Requirements
+3.1 Admin Dashboard Features
+Zone Management
+•	Restricted Zone Creation
+o	Create restricted zones using precise 4-coordinate polygon system
+o	Input coordinates manually or draw on interactive OpenStreetMap
+o	Set zone types: High-Risk, Restricted, Safe, Tourist-Friendly
+o	Configure zone-specific alert parameters
+o	Add zone descriptions and risk levels
+•	Safe Zone Management
+o	Define safe zones with 4-coordinate boundaries
+o	Mark tourist information centers, police stations, hospitals
+o	Set safe zone buffer distances and safety protocols
+Real-time Monitoring & Visualizations
+•	Tourist Location Tracking
+o	Live map view with all active tourists on OpenStreetMap
+o	Real-time location updates every 10-30 seconds
+o	Individual tourist tracking with detailed profiles
+o	Location history and movement patterns
+•	Tourist Clusters Visualization
+o	Real-time tourist clustering on map interface
+o	Dynamic cluster sizing based on tourist density
+o	Cluster movement pattern analysis
+o	High-density area identification and monitoring
+•	Heat Maps of High-Risk Zones
+o	Visual heat map overlays on OpenStreetMap
+o	Risk intensity visualization based on incident data
+o	Historical incident heat maps
+o	Predictive risk zone identification
+o	Tourist density heat maps with safety correlations
+Offline Emergency System (BitChat P2P)
+•	Peer-to-Peer Emergency Network
+o	BitChat integration for offline emergency communications
+o	Admin devices as emergency relay nodes
+o	Automatic network discovery and connection
+o	Emergency message propagation without internet
+•	Offline Alert Management
+o	Receive emergency alerts even without internet connection
+o	P2P emergency broadcast system
+o	Offline incident logging and sync when online
+o	Emergency contact notification via P2P network
+3.2 Mobile App Features (React Native/Expo)
+User Authentication & Profile
+•	Registration Process
+o	Email-based registration via Supabase
+o	KYC document upload (Aadhar/Passport verification)
+o	Emergency contact information (minimum 2 contacts with details)
+o	Travel itinerary input (optional)
+o	Blockchain-based unique user ID generation
+•	Profile Management
+o	Update personal information and KYC details
+o	Manage emergency contacts with complete details
+o	View travel history and safety records
+o	Safety score tracking and improvement tips
+Tourist Safety Score System
+•	Auto-assign Safety Score 
+o	Dynamic score calculation based on travel patterns
+o	Area sensitivity analysis and risk assessment
+o	Real-time score updates based on current location
+o	Historical behavior pattern analysis
+o	Score factors: location risk, compliance, behavior patterns
+o	Score explanation and improvement recommendations
+Emergency Features
+•	Panic Button Functionality
+o	Large, prominent emergency button interface
+o	Live location sharing to nearest police unit
+o	Automatic notification to emergency contacts
+o	Admin monitoring center instant alerts
+o	Silent panic mode for discrete emergencies
+o	Offline emergency activation via BitChat P2P
+•	Offline Emergency Capabilities
+o	BitChat P2P emergency communication
+o	Offline panic button functionality
+o	Emergency contact notification without internet
+o	Location caching for offline emergency response
+Geofencing Alerts
+•	Real-time Zone Monitoring 
+o	Automatic alerts when entering high-risk zones
+o	Restricted zone breach notifications
+o	Safe zone recommendations and guidance
+o	Custom alert preferences and settings
+o	Visual and audio alert options
+3.3 Geofencing System (Tile38)
+Core Geofencing Capabilities
+•	4-Coordinate Zone Definition
+o	Precise polygon-based zone creation
+o	Support for complex multi-coordinate boundaries
+o	Dynamic zone boundary updates
+o	Multi-zone overlap detection and handling
+•	Real-time Geofence Monitoring
+o	Instant entry/exit event detection
+o	Tourist location validation against all zones
+o	Batch location processing for efficiency
+o	Zone breach alert generation
+Geofencing Alerts for Users and Admins
+•	Dual Alert System 
+o	Simultaneous alerts to tourists and admin dashboard
+o	Real-time zone breach notifications
+o	Alert escalation based on zone risk level
+o	Custom alert messaging per zone type
+3.4 AI-Powered Behavioral Analysis (Gemini API)
+Anomaly Detection & Investigation
+•	Location Pattern Analysis
+o	Sudden location drop-off detection and alerts
+o	Prolonged inactivity monitoring with configurable thresholds
+o	Route deviation from planned itinerary detection
+o	Unusual movement pattern identification
+•	Behavioral Flag System for Investigation
+o	Missing person detection (no location updates > threshold)
+o	Silent behavior flagging (no app interaction patterns)
+o	Distress behavior pattern recognition
+o	Emergency situation prediction and early warning
+•	AI-Powered Investigation Tools
+o	Behavioral anomaly classification
+o	Risk assessment scoring
+o	Pattern correlation analysis
+o	Predictive incident modeling
+3.5 Offline Emergency System (BitChat P2P)
+Peer-to-Peer Network Architecture
+•	Decentralized Emergency Communication 
+o	BitChat integration for mesh networking
+o	Device-to-device emergency communication
+o	Automatic peer discovery and connection
+o	Emergency message routing without internet infrastructure
+Offline Alert Capabilities
+•	Admin Offline Alerts
+o	Receive emergency notifications without internet connection
+o	P2P emergency broadcast from tourist devices
+o	Offline incident data collection and storage
+o	Automatic sync when internet connection restored
+•	Tourist Offline Emergency
+o	Offline panic button activation
+o	P2P emergency signal broadcasting
+o	Emergency contact notification via peer network
+o	Offline location sharing to nearby devices
+4. Database Schema (Supabase)
+Core Tables Structure
+Users Table
+•	Blockchain-generated UUID primary key
+•	Email authentication fields
+•	Profile completion status
+•	Account activity status
+•	KYC verification status
+•	Timestamps for tracking
+User Profiles Table
+•	User personal information and demographics
+•	KYC document details (Aadhar/Passport numbers and verification)
+•	Verification status and approval workflow
+•	Nationality and travel documentation
+•	Profile image storage and management
+Emergency Contacts Table
+•	Multiple emergency contacts per user with complete details
+•	Contact priorities and relationship types
+•	Phone numbers, addresses, and alternative contacts
+•	Emergency contact verification status
+•	Creation and update timestamps
+Zones Table
+•	Zone definitions with precise 4-coordinate boundaries
+•	Zone types (safe, restricted, high-risk) with detailed classifications
+•	Risk levels, descriptions, and safety protocols
+•	Admin creation tracking and approval workflow
+•	Active/inactive status with scheduling options
+Location Logs Table
+•	Continuous GPS tracking data with high precision
+•	Accuracy metrics and timestamp information
+•	Zone association when tourist enters/exits zones
+•	Battery level monitoring for device management
+•	Historical movement data for pattern analysis
+Safety Scores Table
+•	Dynamic safety score calculations and factors
+•	Individual scoring components and weightings
+•	Real-time score updates and change tracking
+•	Historical score progression
+•	Detailed factor breakdowns and explanations
+Incidents Table
+•	Emergency and anomaly incidents with full details
+•	Incident types, priorities, and severity levels
+•	Status tracking and resolution workflows
+•	AI analysis integration and recommendations
+•	Location, timing, and response data
+Alerts Table
+•	User and admin notification system
+•	Alert categorization and priority levels
+•	Read/unread status tracking
+•	Incident associations and follow-ups
+•	P2P offline alert integration
+BitChat P2P Network Table
+•	Peer network node registration and status
+•	Emergency message routing and delivery status
+•	Offline communication logs and sync data
+•	Device capability and availability tracking
+5. API Requirements
+Authentication APIs
+•	User registration with KYC verification workflow
+•	Email-based login system with security features
+•	Session management and secure logout
+•	Profile retrieval and comprehensive updates
+•	Password reset and account recovery
+Tourist Management APIs
+•	Real-time tourist location tracking and validation
+•	Safety score calculation and historical tracking
+•	Emergency contact management with verification
+•	Travel itinerary APIs and route planning
+•	Profile completion tracking and KYC workflow
+Zone Management APIs
+•	Zone creation with precise 4-coordinate system
+•	Zone boundary updates and real-time modifications
+•	Zone type management with risk classifications
+•	Bulk zone operations and batch processing
+•	Zone query and advanced search functionality
+Geofencing APIs
+•	Real-time geofence monitoring and validation
+•	Entry/exit event handling and logging
+•	Zone breach notifications for users and admins
+•	Location validation services with accuracy metrics
+•	Batch location processing for performance
+Emergency & Incident APIs
+•	Panic button activation and response coordination
+•	Incident creation, status updates, and resolution
+•	Emergency response team coordination
+•	AI-powered anomaly reporting and analysis
+•	Offline emergency data sync and processing
+BitChat P2P APIs
+•	Peer network registration and discovery
+•	Offline emergency message routing
+•	P2P communication establishment and maintenance
+•	Emergency broadcast and relay functionality
+•	Offline data synchronization when online
+Monitoring & Analytics APIs
+•	Real-time dashboard data feeds and updates
+•	Heat map data generation and visualization
+•	Tourist clustering analytics and insights
+•	Historical data retrieval and analysis
+•	System performance metrics and health monitoring
+6. Integration Requirements
+Tile38 Integration
+•	High-Performance Geofencing 
+o	Real-time location indexing and query processing
+o	4-coordinate polygon-based zone matching
+o	Distance calculations and proximity alerts
+o	Bulk location updates with optimization
+o	Sub-second query response for 10,000+ concurrent users
+Supabase MCP Integration
+•	Unified Data Management
+o	Comprehensive database operations via MCP
+o	Real-time subscriptions for live dashboard updates
+o	Row-level security implementation for data protection
+o	Automated backup and disaster recovery
+o	Cross-table relationship management and optimization
+•	Authentication & User Management
+o	Email-based authentication with security features
+o	Session management across web and mobile platforms
+o	Role-based access control (Admin/Tourist/Emergency)
+o	Blockchain user ID generation and management
+shadcn MCP Integration
+•	Admin Dashboard UI 
+o	Consistent component library usage via MCP
+o	Modern, responsive dashboard interface
+o	Real-time data visualization components
+o	Theme and styling standardization
+o	Accessibility compliance and optimization
+OpenStreetMap Integration
+•	Comprehensive Mapping Services 
+o	Real-time map rendering with zone overlays
+o	Custom visualization for tourist clusters and heat maps
+o	Tourist point-of-interest display and navigation
+o	Offline map capabilities for emergency situations
+o	Route planning and deviation detection
+Gemini API Integration
+•	Advanced AI Analysis 
+o	Behavioral pattern recognition and classification
+o	Risk assessment calculations and predictions
+o	Natural language incident processing
+o	Predictive analytics for safety scores
+o	Anomaly detection for investigation flagging
+BitChat P2P Integration
+•	Offline Emergency Network 
+o	Decentralized communication mesh network
+o	Emergency message routing without internet
+o	Peer discovery and automatic connection
+o	Offline alert broadcasting and relay
+o	Data synchronization when connectivity restored
+7. Mobile App Specifications (React Native/Expo)
+Platform Support
+•	Target Platforms: iOS and Android
+•	Minimum Requirements: 
+o	iOS 12.0+ / Android API Level 23+
+o	GPS/Location Services enabled
+o	Internet connectivity (3G/4G/5G/WiFi)
+o	Camera access for KYC and emergency features
+o	Push notification support
+o	BitChat P2P communication support
+Offline Capabilities
+•	Emergency Offline Functionality 
+o	BitChat P2P emergency communication
+o	Cached map data for offline navigation
+o	Emergency contact access without internet
+o	Local data storage for critical information
+o	Offline panic button activation and alert broadcasting
+Security & Privacy
+•	Data Protection 
+o	Biometric authentication support
+o	Encrypted local data storage
+o	Secure API communication
+o	Privacy control settings
+o	KYC document security and encryption
+8. System Requirements & Performance
+Scalability Requirements
+•	User Capacity: Support for 100,000+ registered users
+•	Concurrent Users: 10,000+ simultaneous active users
+•	Location Updates: Process 50,000+ location updates per minute
+•	Response Time: API responses under 200ms for 95% of requests
+•	Offline Network: Support 1,000+ P2P emergency nodes
+Reliability & Availability
+•	System Uptime: 99.9% availability requirement
+•	Disaster Recovery: Automated backup and restoration
+•	Failover Systems: Multi-region deployment capability
+•	Emergency Network: 24/7 P2P network availability
+•	Offline Resilience: Emergency functions work without internet
+Security & Compliance
+•	Data Encryption: End-to-end encryption for sensitive data
+•	KYC Security: Secure document storage and verification
+•	GDPR Compliance: User data privacy and deletion rights
+•	Audit Logging: Comprehensive activity and emergency logging
+•	P2P Security: Encrypted peer-to-peer communications
+9. Testing & Quality Assurance
+Testing Requirements
+•	Unit Testing: Comprehensive backend and mobile testing
+•	Integration Testing: Cross-service functionality validation
+•	P2P Network Testing: Offline emergency communication testing
+•	Load Testing: Performance under high user volumes
+•	Security Testing: Penetration testing and vulnerability assessment
+•	Emergency Scenario Testing: Real-world emergency simulation
+10. Project Deliverables
+Phase 1: Core Infrastructure
+•	Supabase database setup with MCP integration
+•	Email authentication system with KYC workflow
+•	Tile38 geofencing service implementation
+•	Basic admin dashboard with shadcn MCP
+•	OpenStreetMap integration
+Phase 2: Mobile Application & Emergency Features
+•	React Native/Expo app development
+•	Tourist safety score system implementation
+•	Panic button and emergency features
+•	User registration with KYC and emergency contacts
+•	Basic geofencing alerts
+Phase 3: Advanced Monitoring & AI
+•	Gemini AI integration for behavioral analysis
+•	Advanced admin dashboard with real-time visualizations
+•	Tourist clusters and heat map implementation
+•	AI-powered anomaly detection and investigation flags
+Phase 4: Offline Emergency System
+•	BitChat P2P technology integration
+•	Offline emergency alert system for admins
+•	P2P network setup and testing
+•	Offline functionality implementation and optimization
+Phase 5: Testing & Deployment
+•	Comprehensive testing including offline scenarios
+•	Performance optimization and security hardening
+•	Production deployment with emergency backup systems
+•	User training and comprehensive documentation
+11. Success Metrics
+Safety & Emergency Response
+•	Emergency response time improvement
+•	Incident detection accuracy and speed
+•	False positive/negative rates for AI detection
+•	Offline emergency system reliability
+User Engagement & System Performance
+•	Tourist safety score accuracy and user compliance
+•	System uptime and geofencing accuracy
+•	P2P network availability and message delivery rates
+•	User adoption of safety features and KYC completion
+________________________________________
+Note for Claude Code Development: This system prioritizes tourist safety through comprehensive monitoring, AI-powered analysis, and critical offline emergency capabilities via BitChat P2P technology. All components must integrate seamlessly to ensure real-time safety monitoring and reliable emergency response, even when internet connectivity is unavailable.
+

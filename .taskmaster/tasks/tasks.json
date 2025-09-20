@@ -1,0 +1,970 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Project Structure and Core Dependencies",
+        "description": "Set up the foundational project structure with all required dependencies for the Smart Tourist Safety Monitoring System",
+        "details": "Create project structure with separate directories for admin dashboard (Next.js/React), mobile app (React Native/Expo), backend services, and shared utilities. Initialize package.json files with core dependencies: React Native/Expo for mobile, Next.js for admin dashboard, Supabase client libraries, Tile38 client, Gemini AI SDK, BitChat P2P library, OpenStreetMap integration libraries (react-leaflet, leaflet), and authentication libraries. Set up TypeScript configuration, ESLint, and Prettier for code quality. Configure environment variables structure for all API keys and service endpoints.",
+        "testStrategy": "Verify all package installations complete successfully, TypeScript compilation works without errors, and environment variable templates are properly structured. Test basic project builds for both web and mobile components.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Monorepo Structure and Workspace Configuration",
+            "description": "Set up monorepo structure with separate workspaces for mobile app, admin dashboard, backend services, and shared utilities",
+            "dependencies": [],
+            "details": "Create root package.json with workspace configuration, establish directory structure: /packages/mobile (React Native/Expo), /packages/admin (Next.js), /packages/backend (Node.js services), /packages/shared (common utilities and types). Configure workspace dependencies and scripts for cross-package development.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Initialize Mobile App Package with React Native/Expo",
+            "description": "Set up React Native/Expo mobile application with core dependencies and TypeScript configuration",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Initialize Expo project in packages/mobile, install React Native dependencies, configure Expo SDK, set up navigation libraries (React Navigation), install Supabase client, location services (expo-location), camera/document scanner libraries, and biometric authentication packages. Configure TypeScript and Metro bundler.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Initialize Admin Dashboard Package with Next.js",
+            "description": "Set up Next.js admin dashboard with required dependencies and TypeScript configuration",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Initialize Next.js project in packages/admin, install React dependencies, UI components library, Supabase client, OpenStreetMap libraries (react-leaflet, leaflet), data visualization libraries for analytics, and authentication packages. Configure TypeScript, Next.js config, and Tailwind CSS for styling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Set Up Backend Services Package",
+            "description": "Initialize backend services package with Node.js, API frameworks, and all required service dependencies",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Set up Node.js backend in packages/backend, install Express/Fastify framework, Supabase server client, Tile38 client for geofencing, Gemini AI SDK, BitChat P2P library, real-time WebSocket libraries, and email service providers. Configure TypeScript, API routing structure, and middleware setup.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Configure Development Tooling and Code Quality",
+            "description": "Set up TypeScript, ESLint, Prettier, and Git hooks across all packages for consistent code quality",
+            "dependencies": [
+              "1.2",
+              "1.3",
+              "1.4"
+            ],
+            "details": "Configure shared TypeScript config, ESLint rules for React/React Native/Node.js, Prettier formatting rules, Husky Git hooks for pre-commit linting and testing. Set up VS Code workspace settings, debugging configurations, and shared type definitions in packages/shared.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create Environment Configuration and Build Scripts",
+            "description": "Set up environment variable templates and build scripts for development and production across all packages",
+            "dependencies": [
+              "1.5"
+            ],
+            "details": "Create .env.example files for each package with all required API keys (Supabase, Gemini AI, etc.), set up environment variable validation, configure build scripts for each package, create Docker configurations for backend services, and set up development startup scripts for the entire monorepo.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Supabase Database Schema Implementation",
+        "description": "Create comprehensive database schema with all required tables, relationships, and security policies using Supabase MCP integration",
+        "details": "Implement complete database schema using Supabase MCP: Users table with blockchain-generated UUID primary keys, User Profiles table with KYC document fields, Emergency Contacts table with multiple contacts per user, Zones table with 4-coordinate polygon boundaries and zone types, Location Logs table for GPS tracking with accuracy metrics, Safety Scores table with dynamic calculations, Incidents table for emergency tracking, Alerts table for notifications, and BitChat P2P Network table for offline communications. Set up Row Level Security (RLS) policies, create indexes for geospatial queries, and establish foreign key relationships. Configure real-time subscriptions for live dashboard updates.",
+        "testStrategy": "Execute database migration scripts successfully, verify all table constraints and relationships work correctly, test RLS policies with different user roles, and validate real-time subscription functionality with sample data.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Core User Tables Schema",
+            "description": "Design and implement Users, UserProfiles, and EmergencyContacts tables with proper data types and constraints",
+            "dependencies": [],
+            "details": "Create Users table with blockchain-generated UUID primary keys, authentication fields, and basic user data. Implement UserProfiles table with KYC document storage fields, personal information, and verification status. Design EmergencyContacts table supporting multiple contacts per user with relationship types and contact methods.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Geospatial Tables for Location Tracking",
+            "description": "Create Zones and LocationLogs tables with PostGIS geometry support for spatial data",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Design Zones table with 4-coordinate polygon boundaries using PostGIS geometry types, zone classification, and metadata. Implement LocationLogs table for GPS tracking with accuracy metrics, timestamp indexing, and geospatial data types for efficient spatial queries.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build Safety and Incident Tracking Tables",
+            "description": "Create SafetyScores, Incidents, and Alerts tables for monitoring and emergency response",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Design SafetyScores table with dynamic calculation fields, historical scoring, and user associations. Implement Incidents table for emergency event tracking with severity levels, location data, and resolution status. Create Alerts table for notification management with delivery status and recipient tracking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement BitChat P2P Network Table",
+            "description": "Create database structure for peer-to-peer network nodes and offline communication",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Design BitChat P2P Network table for node registration, peer discovery, connection status, and capability tracking. Include fields for device identification, network topology, message routing, and offline communication history.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Establish Foreign Key Relationships and Constraints",
+            "description": "Set up all table relationships, foreign keys, and data integrity constraints",
+            "dependencies": [
+              "2.1",
+              "2.2",
+              "2.3",
+              "2.4"
+            ],
+            "details": "Create foreign key relationships between Users and all dependent tables, establish referential integrity constraints, set up cascade rules for data consistency, and implement check constraints for data validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create Indexes for Performance Optimization",
+            "description": "Implement database indexes including geospatial indexes for spatial queries",
+            "dependencies": [
+              "2.5"
+            ],
+            "details": "Create B-tree indexes on frequently queried columns, implement GiST indexes for geospatial data in Zones and LocationLogs tables, set up composite indexes for complex queries, and optimize query performance for real-time operations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Row Level Security Policies",
+            "description": "Configure RLS policies for all tables to ensure data security and access control",
+            "dependencies": [
+              "2.6"
+            ],
+            "details": "Enable Row Level Security on all tables, create policies for user data isolation, implement admin access controls, set up role-based permissions for different user types, and ensure data privacy compliance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Configure Real-time Subscriptions and Migration Scripts",
+            "description": "Set up real-time subscriptions for live updates and create database migration scripts",
+            "dependencies": [
+              "2.7"
+            ],
+            "details": "Configure Supabase real-time subscriptions for location updates, incident alerts, and safety score changes. Create comprehensive database migration scripts for schema deployment, version control, and rollback procedures. Test real-time functionality for dashboard updates.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Tile38 Geofencing Service Setup and Integration",
+        "description": "Configure Tile38 Redis-based geolocation database for high-performance geofencing capabilities",
+        "details": "Set up Tile38 server with Docker configuration for development and production. Implement geofencing service layer with APIs for: creating 4-coordinate polygon zones, real-time location indexing, sub-second zone entry/exit detection, bulk location updates for 10,000+ concurrent users, and distance calculations. Create Node.js/TypeScript service wrapper with connection pooling, error handling, and automatic reconnection. Integrate with Supabase database for zone definitions and implement webhook system for real-time geofence alerts. Configure Tile38 for optimal performance with proper memory settings and persistence.",
+        "testStrategy": "Load test with 10,000+ simulated location updates per minute, verify sub-second query response times, test polygon zone creation and validation, and ensure webhook reliability for zone entry/exit events.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Docker Configuration and Tile38 Server Setup",
+            "description": "Set up Tile38 server with Docker configuration for both development and production environments",
+            "dependencies": [],
+            "details": "Create Docker containers for Tile38 with proper configuration files, environment variables, and volume mounting. Set up development and production Docker Compose files with appropriate memory settings, persistence configuration, and networking. Configure Tile38 server parameters for optimal geospatial performance including AOF persistence, memory limits, and connection settings.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Node.js/TypeScript Service Wrapper Implementation",
+            "description": "Create Node.js service wrapper with connection pooling, error handling, and automatic reconnection",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Implement TypeScript service class for Tile38 connectivity with Redis connection pooling, automatic reconnection logic, error handling and retry mechanisms. Create service abstraction layer with proper logging, health checks, and graceful shutdown procedures. Include configuration management for different environments.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Polygon Zone Creation and Validation APIs",
+            "description": "Implement APIs for creating and validating 4-coordinate polygon geofencing zones",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Create REST API endpoints for polygon zone creation with 4-coordinate validation, zone type classification, and boundary verification. Implement geospatial validation logic to ensure valid polygon geometry, area calculations, and zone overlap detection. Include zone metadata management and zone querying capabilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Real-time Location Indexing System",
+            "description": "Build high-performance real-time location indexing system for tracking user positions",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Implement location update APIs with batch processing capabilities for handling 10,000+ concurrent users. Create efficient location indexing using Tile38's geospatial commands with proper key structuring, TTL management, and location history tracking. Optimize for sub-second query response times with proper data structures.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Zone Entry/Exit Detection and Webhook System",
+            "description": "Implement webhook system for real-time geofence zone entry and exit event notifications",
+            "dependencies": [
+              "3.3",
+              "3.4"
+            ],
+            "details": "Create webhook infrastructure for zone boundary crossing detection with sub-second response times. Implement event filtering, webhook delivery reliability with retry mechanisms, and webhook payload customization. Include webhook endpoint management, authentication, and delivery status tracking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Bulk Location Processing and Performance Optimization",
+            "description": "Implement bulk location update processing optimized for 10,000+ concurrent users",
+            "dependencies": [
+              "3.4"
+            ],
+            "details": "Create batch processing system for handling massive location updates with queue management, rate limiting, and load balancing. Implement performance optimizations including connection pooling, query batching, and memory management. Add monitoring and metrics collection for performance tracking and alerting.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Supabase Integration and Distance Calculation APIs",
+            "description": "Integrate with Supabase database for zone definitions and implement distance calculation APIs",
+            "dependencies": [
+              "3.5"
+            ],
+            "details": "Create integration layer between Tile38 and Supabase for zone definition synchronization, user location tracking, and incident correlation. Implement distance calculation APIs using Tile38's geospatial functions with support for various distance metrics. Include data synchronization workflows and conflict resolution mechanisms.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Authentication System with KYC Workflow",
+        "description": "Implement comprehensive email-based authentication with KYC document verification and blockchain-based user ID generation",
+        "details": "Build authentication system using Supabase Auth with email verification. Implement KYC workflow with document upload for Aadhar/Passport verification, image processing for document validation, and admin approval workflow. Create blockchain-based unique user ID generation using crypto libraries. Implement role-based access control (Admin/Tourist/Emergency), session management across web and mobile platforms, and password reset functionality. Add biometric authentication support for mobile app and secure document storage with encryption. Create admin interface for KYC approval workflow with document review capabilities.",
+        "testStrategy": "Test complete user registration flow including email verification and KYC submission, verify blockchain ID generation uniqueness, test session persistence across platforms, validate document upload security, and ensure admin KYC approval workflow functions correctly.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Setup Supabase Auth Configuration",
+            "description": "Configure Supabase authentication service with email provider settings and security policies",
+            "dependencies": [],
+            "details": "Set up Supabase project authentication configuration including email provider setup, authentication templates, security settings, and basic user registration flow. Configure email verification templates and SMTP settings.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement User Registration and Email Verification",
+            "description": "Create user registration flow with email verification using Supabase Auth",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Build registration forms for web and mobile, implement email verification flow, handle registration errors and edge cases, and create user profile initialization after successful verification.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create KYC Document Upload System",
+            "description": "Implement secure document upload functionality for Aadhar and Passport verification",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Build secure file upload system with validation for document types, implement file size limits and security scanning, create encrypted storage solution, and add document metadata tracking.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Document Validation and Image Processing",
+            "description": "Create automated document validation system with image processing capabilities",
+            "dependencies": [
+              "4.3"
+            ],
+            "details": "Implement OCR for document text extraction, create document format validation, add image quality checks, implement fraud detection algorithms, and create automated validation scoring system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Build Blockchain-based User ID Generation",
+            "description": "Implement unique user ID generation using blockchain cryptography",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Create blockchain-based UUID generation system using crypto libraries, implement unique ID verification, add ID collision prevention, and create user ID linking with authentication system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create Admin KYC Approval Workflow Interface",
+            "description": "Build admin dashboard for KYC document review and approval process",
+            "dependencies": [
+              "4.4"
+            ],
+            "details": "Create admin interface for document review, implement approval/rejection workflow, add document annotation tools, create audit trail for KYC decisions, and implement bulk approval capabilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Role-based Access Control System",
+            "description": "Create comprehensive RBAC system for Admin, Tourist, and Emergency roles",
+            "dependencies": [
+              "4.6"
+            ],
+            "details": "Define role permissions and access levels, implement middleware for role checking, create role assignment system, add role-based UI components, and implement permission inheritance structure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Build Cross-platform Session Management",
+            "description": "Implement session management system for web and mobile platforms",
+            "dependencies": [
+              "4.7"
+            ],
+            "details": "Create session persistence across platforms, implement secure token management, add session expiration handling, create device management system, and implement concurrent session control.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 9,
+            "title": "Add Biometric Authentication and Password Recovery",
+            "description": "Implement biometric authentication for mobile and password reset functionality",
+            "dependencies": [
+              "4.8"
+            ],
+            "details": "Integrate biometric authentication libraries for mobile app, create secure biometric data storage, implement password reset flow with email verification, add account recovery options, and create security question system.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "React Native Mobile Application Core Structure",
+        "description": "Develop the core React Native/Expo mobile application with navigation, authentication, and basic UI components",
+        "details": "Create React Native/Expo application with TypeScript support targeting iOS 12.0+ and Android API Level 23+. Implement navigation structure using React Navigation with authenticated and guest flows. Build core UI components with consistent styling, authentication screens (login, registration, KYC upload), and profile management. Integrate Supabase client for authentication and real-time data. Set up location services with background location tracking, camera integration for KYC documents, and push notification configuration. Implement secure local storage for offline capabilities and cached data.",
+        "testStrategy": "Test app installation and basic navigation on both iOS and Android simulators, verify authentication flow integration with Supabase, test camera functionality for document upload, validate location services permissions and tracking, and ensure push notifications work correctly.",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize React Native/Expo Project with TypeScript",
+            "description": "Create new Expo project with TypeScript configuration targeting iOS 12.0+ and Android API Level 23+",
+            "dependencies": [],
+            "details": "Set up new Expo project using latest SDK, configure TypeScript with strict mode, set up target platform versions, configure app.json/app.config.js with proper iOS and Android settings, and install core dependencies including Expo CLI and development tools.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Navigation Structure with React Navigation",
+            "description": "Set up navigation system with authenticated and guest user flows using React Navigation",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Install and configure React Navigation v6 with stack, tab, and drawer navigators. Create authenticated navigation structure for logged-in users and guest navigation for unauthenticated users. Implement navigation guards and conditional rendering based on authentication state.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build Core UI Component Library",
+            "description": "Create reusable UI components with consistent styling and theming system",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Develop component library including buttons, inputs, cards, modals, and loading indicators. Implement theme system with color schemes, typography, and spacing constants. Create styled components with responsive design principles and accessibility features.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create Authentication Screens",
+            "description": "Build login, registration, and KYC upload screens with form validation",
+            "dependencies": [
+              "5.2",
+              "5.3"
+            ],
+            "details": "Implement authentication screens including login form with email/password, registration form with validation, and KYC document upload screen with camera integration. Add form validation, error handling, and loading states for all authentication flows.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate Supabase Client for Authentication",
+            "description": "Set up Supabase client and implement authentication methods with real-time capabilities",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Install and configure Supabase client library, implement authentication methods (sign up, sign in, sign out), set up session management with AsyncStorage, and configure real-time subscriptions for user data updates. Handle authentication state changes and token refresh.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Location Services with Background Tracking",
+            "description": "Set up location permissions and background location tracking capabilities",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Configure expo-location for foreground and background location tracking, implement location permissions handling for both iOS and Android, set up background location tasks, and create location accuracy settings. Implement location data formatting and validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Integrate Camera for KYC Document Capture",
+            "description": "Implement camera functionality for KYC document photography and upload",
+            "dependencies": [
+              "5.3"
+            ],
+            "details": "Set up expo-camera with camera permissions, implement document capture interface with photo preview and retake options, add image compression and validation, and create upload progress indicators. Handle camera permissions and provide fallback options.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Configure Push Notifications and Secure Storage",
+            "description": "Set up push notification system and implement secure local storage for offline capabilities",
+            "dependencies": [
+              "5.5"
+            ],
+            "details": "Configure expo-notifications with proper permissions and token registration, implement notification handling for foreground and background states, set up expo-secure-store for sensitive data storage, and create offline data caching system with AsyncStorage for non-sensitive data.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Admin Dashboard with Real-time Monitoring",
+        "description": "Create comprehensive admin web dashboard using Next.js and shadcn components with real-time tourist monitoring capabilities",
+        "details": "Build Next.js admin dashboard using shadcn MCP component library for consistent UI. Implement real-time monitoring features: live tourist location tracking on OpenStreetMap with 10-30 second updates, tourist clustering visualization with dynamic sizing, heat maps for high-risk zones with historical incident overlays, and zone management interface with 4-coordinate polygon creation. Add WebSocket connections for real-time updates, responsive design for desktop and tablet use, and admin authentication with role-based permissions. Integrate with Tile38 for geofencing data and Supabase for user management.",
+        "testStrategy": "Test real-time map updates with simulated tourist locations, verify zone creation interface with complex polygons, validate heat map rendering with sample incident data, test WebSocket connection stability under load, and ensure responsive design across different screen sizes.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Next.js Project Setup with shadcn Integration",
+            "description": "Initialize Next.js admin dashboard project with shadcn/ui component library, TypeScript configuration, and basic project structure",
+            "dependencies": [],
+            "details": "Create new Next.js 14 project with App Router, install and configure shadcn/ui components, set up TypeScript strict mode, configure Tailwind CSS, establish folder structure for components, pages, hooks, and utilities. Install required dependencies for mapping and real-time functionality.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "OpenStreetMap Integration and Base Map Setup",
+            "description": "Implement OpenStreetMap integration with custom tile layers and basic map functionality for the admin dashboard",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Install and configure react-leaflet and leaflet libraries, create reusable Map component with OpenStreetMap tiles, implement map controls (zoom, pan, layer switching), set up custom marker and overlay systems, and ensure responsive map container that works across desktop and tablet devices.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "WebSocket Connection and Real-time Data Infrastructure",
+            "description": "Establish WebSocket connections for real-time data updates and implement data management system",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Set up WebSocket client for real-time tourist location updates, implement connection management with reconnection logic, create data store using Zustand or Context API for real-time state management, establish 10-30 second update intervals, and implement error handling for connection failures.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Tourist Location Tracking and Clustering Visualization",
+            "description": "Implement real-time tourist location display with intelligent clustering for performance optimization",
+            "dependencies": [
+              "6.2",
+              "6.3"
+            ],
+            "details": "Create tourist location markers with custom icons and info popups, implement marker clustering algorithm with dynamic sizing based on zoom level and density, add real-time position updates with smooth animations, implement filtering options by tourist status or time range, and optimize rendering performance for thousands of concurrent users.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Heat Map Rendering for High-Risk Zones",
+            "description": "Develop heat map visualization system for displaying incident-prone areas and historical safety data",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Implement heat map overlay using leaflet heat map plugin, integrate historical incident data for heat map generation, create dynamic heat map intensity based on incident frequency and severity, add temporal controls for viewing heat maps across different time periods, and implement legend and controls for heat map customization.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Zone Management Interface with Polygon Drawing",
+            "description": "Create comprehensive zone management system with polygon creation, editing, and zone type assignment",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Implement polygon drawing tools using Leaflet.draw for creating 4-coordinate zones, create zone editing interface with drag-and-drop vertex manipulation, add zone type assignment (safe, caution, restricted, emergency), implement zone validation and area calculations, create zone list management with search and filtering capabilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Admin Authentication and Dashboard Layout",
+            "description": "Implement admin authentication system and create responsive dashboard layout with navigation and role-based access",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Integrate Supabase authentication for admin users, implement role-based access control with different permission levels, create responsive dashboard layout using shadcn components, build navigation sidebar with real-time notification indicators, implement admin profile management, and create logout functionality with session cleanup.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Emergency Features and Panic Button System",
+        "description": "Implement comprehensive emergency response system with panic button, emergency contacts, and admin notifications",
+        "details": "Develop emergency system with prominent panic button UI in mobile app supporting both visible and silent modes. Implement automatic location sharing to nearest police units, instant notifications to emergency contacts with complete details, and admin monitoring center alerts with real-time incident tracking. Create emergency escalation workflows, incident status management, and emergency contact verification system. Add offline emergency capabilities with local storage backup and automatic sync when online. Integrate with admin dashboard for emergency response coordination and incident management.",
+        "testStrategy": "Test panic button activation in various network conditions, verify emergency contact notifications are sent reliably, validate admin alert system with real-time incident updates, test offline emergency functionality, and ensure emergency escalation workflows execute correctly.",
+        "priority": "high",
+        "dependencies": [
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Panic Button UI",
+            "description": "Create prominent panic button interface with visible and silent activation modes for mobile app",
+            "dependencies": [],
+            "details": "Design intuitive panic button UI with clear visual indicators, implement both visible (audible/visual alerts) and silent (discrete activation) modes, add confirmation mechanisms to prevent accidental activation, ensure accessibility compliance, and optimize for quick activation under stress conditions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Location Sharing to Police Units",
+            "description": "Build automatic location sharing system that sends real-time coordinates to nearest police units",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Integrate GPS location services with police unit database, implement automatic nearest unit detection, create secure location data transmission, add location accuracy verification, and ensure compliance with law enforcement data sharing protocols.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create Emergency Contact Notification System",
+            "description": "Develop instant notification system for emergency contacts with comprehensive incident details",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Build emergency contact management interface, implement multi-channel notifications (SMS, email, push), create incident detail templates with location and timestamp, add delivery confirmation tracking, and ensure notification reliability across network conditions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build Admin Monitoring Center with Real-time Alerts",
+            "description": "Create admin dashboard for emergency monitoring with real-time incident tracking and response coordination",
+            "dependencies": [
+              "7.2",
+              "7.3"
+            ],
+            "details": "Design admin monitoring interface with live incident dashboard, implement real-time alert system with priority levels, create incident response workflow tools, add operator assignment and tracking, and integrate with existing admin dashboard infrastructure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Emergency Escalation Workflows",
+            "description": "Create automated escalation system for emergency incidents based on response times and severity",
+            "dependencies": [
+              "7.4"
+            ],
+            "details": "Design escalation rule engine with configurable timeouts, implement automatic escalation triggers, create escalation hierarchy management, add manual escalation override capabilities, and ensure escalation notifications reach appropriate authorities and contacts.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Develop Incident Status Management System",
+            "description": "Build comprehensive incident tracking with status updates and resolution workflows",
+            "dependencies": [
+              "7.4"
+            ],
+            "details": "Create incident lifecycle management with status tracking (active, responded, resolved), implement status update mechanisms for all stakeholders, add incident resolution workflows, create incident history and audit trails, and ensure status synchronization across all platforms.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Emergency Contact Verification System",
+            "description": "Create system for verifying and managing emergency contacts with validation workflows",
+            "dependencies": [],
+            "details": "Build emergency contact registration interface, implement contact verification through multiple channels, create contact relationship validation, add emergency contact testing capabilities, and ensure contact information is kept current and accessible.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Add Offline Emergency Capabilities",
+            "description": "Implement offline emergency functionality with local storage backup and automatic sync",
+            "dependencies": [
+              "7.1",
+              "7.2",
+              "7.3"
+            ],
+            "details": "Create local storage system for emergency data, implement offline panic button activation, build emergency data queue for sync when online, add offline location caching, ensure critical emergency functions work without internet connectivity, and create automatic sync mechanisms when connection restored.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "AI-Powered Behavioral Analysis System",
+        "description": "Integrate Gemini AI for advanced behavioral pattern recognition, anomaly detection, and predictive safety analysis",
+        "details": "Implement Gemini AI integration for behavioral analysis with location pattern recognition, sudden location drop-off detection, prolonged inactivity monitoring, and route deviation alerts. Create AI-powered investigation tools for missing person detection, behavioral anomaly classification, risk assessment scoring, and predictive incident modeling. Develop safety score calculation system with dynamic scoring based on travel patterns, area sensitivity analysis, and real-time score updates. Implement machine learning pipeline for pattern correlation analysis and early warning systems.",
+        "testStrategy": "Test AI model accuracy with historical location data, validate anomaly detection with simulated edge cases, verify safety score calculations reflect actual risk patterns, test real-time analysis performance with high data volumes, and ensure AI recommendations are actionable and accurate.",
+        "priority": "medium",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Gemini AI Integration and Setup",
+            "description": "Set up Gemini AI API integration with authentication, configuration, and basic connectivity testing",
+            "dependencies": [],
+            "details": "Configure Gemini AI API credentials, implement connection wrapper with error handling, set up rate limiting and quota management, create basic AI service interface for behavioral analysis queries, and establish secure API communication protocols.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Location Pattern Recognition Engine",
+            "description": "Develop AI-powered location pattern analysis to identify user movement behaviors and establish baseline patterns",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Implement location data preprocessing pipeline, create pattern recognition algorithms using Gemini AI, develop baseline behavior establishment for individual users, build pattern classification system for normal vs. anomalous movement, and create location clustering analysis for frequent destinations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Anomaly Detection System",
+            "description": "Build comprehensive anomaly detection for sudden location drops, prolonged inactivity, and route deviations",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Implement sudden location drop-off detection algorithms, create prolonged inactivity monitoring with configurable thresholds, develop route deviation analysis comparing to established patterns, build real-time anomaly scoring system, and create alert generation for different anomaly types.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Safety Score Calculation System",
+            "description": "Develop dynamic safety scoring system based on travel patterns, area sensitivity, and real-time risk factors",
+            "dependencies": [
+              "8.2",
+              "8.3"
+            ],
+            "details": "Create safety score calculation algorithms using multiple risk factors, implement area sensitivity analysis using historical crime data and geographic information, develop dynamic scoring updates based on real-time conditions, build personalized risk assessment based on user patterns, and create score visualization and explanation system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "AI-Powered Investigation Tools",
+            "description": "Create investigation dashboard with missing person detection, behavioral classification, and risk assessment tools",
+            "dependencies": [
+              "8.3",
+              "8.4"
+            ],
+            "details": "Build missing person detection algorithms analyzing sudden pattern changes, create behavioral anomaly classification system with severity levels, implement risk assessment scoring for emergency situations, develop investigation timeline visualization, and create AI-powered search and correlation tools for incident analysis.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Machine Learning Pipeline and Pattern Correlation",
+            "description": "Implement ML pipeline for continuous learning, pattern correlation analysis, and model improvement",
+            "dependencies": [
+              "8.4",
+              "8.5"
+            ],
+            "details": "Create machine learning data pipeline for continuous model training, implement pattern correlation analysis across user base, develop model versioning and A/B testing framework, build automated model retraining based on new data, and create performance monitoring and model drift detection.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Predictive Incident Modeling and Early Warning System",
+            "description": "Develop predictive modeling for incident prevention and early warning alert system",
+            "dependencies": [
+              "8.5",
+              "8.6"
+            ],
+            "details": "Implement predictive incident modeling using historical data and current patterns, create early warning system with escalating alert levels, develop proactive intervention recommendations, build incident probability scoring system, create automated emergency contact notification system, and implement predictive dashboard for emergency services integration.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "BitChat P2P Offline Emergency Network",
+        "description": "Implement BitChat peer-to-peer technology for offline emergency communications and decentralized alert system",
+        "details": "Integrate BitChat P2P library for mesh networking capabilities enabling device-to-device emergency communication without internet. Implement automatic peer discovery and connection, emergency message routing through peer network, and admin devices as emergency relay nodes. Create offline alert broadcasting system, P2P emergency message propagation, and automatic sync when internet connectivity restored. Develop peer network management with node registration, status tracking, and capability assessment. Ensure encrypted P2P communications for security.",
+        "testStrategy": "Test P2P network formation without internet connectivity, verify emergency message propagation through mesh network, validate automatic peer discovery and connection, test message encryption and security, and ensure reliable sync when connectivity restored.",
+        "priority": "medium",
+        "dependencies": [
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "BitChat P2P Library Integration and Setup",
+            "description": "Integrate BitChat P2P library into the project and configure basic mesh networking infrastructure",
+            "dependencies": [],
+            "details": "Install and configure BitChat P2P library, set up mesh networking protocols, implement basic P2P connection establishment, and create foundation for peer-to-peer communication without internet dependency.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Automatic Peer Discovery and Connection System",
+            "description": "Implement automatic peer discovery protocols and connection management for mesh network formation",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Develop peer discovery mechanisms using Bluetooth, WiFi Direct, and local network scanning. Implement automatic connection establishment, peer handshaking protocols, and maintain active peer connection pools for emergency communications.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Emergency Message Routing and Propagation",
+            "description": "Create message routing system for emergency communications through peer network",
+            "dependencies": [
+              "9.2"
+            ],
+            "details": "Implement message routing algorithms for multi-hop emergency message delivery, create message priority system for emergency alerts, develop message deduplication and loop prevention, and ensure reliable message propagation across mesh network.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Admin Device Emergency Relay Node System",
+            "description": "Configure admin devices as emergency relay nodes with enhanced capabilities",
+            "dependencies": [
+              "9.3"
+            ],
+            "details": "Implement admin device designation as emergency relay nodes, create enhanced message forwarding capabilities, develop admin-only emergency broadcast features, and implement relay node status monitoring and management system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Offline Alert Broadcasting and P2P Communication Security",
+            "description": "Implement offline emergency alert broadcasting system with encrypted P2P communications",
+            "dependencies": [
+              "9.4"
+            ],
+            "details": "Create offline alert broadcasting capabilities for emergency situations, implement end-to-end encryption for P2P messages, develop emergency alert prioritization system, and ensure secure communication protocols for sensitive emergency data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Connectivity Sync and Peer Network Management",
+            "description": "Implement automatic sync when internet restored and comprehensive peer network management",
+            "dependencies": [
+              "9.5"
+            ],
+            "details": "Develop automatic synchronization system when internet connectivity is restored, implement peer network management with node registration and status tracking, create peer capability assessment system, and build network health monitoring and optimization features.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "System Integration, Testing, and Production Deployment",
+        "description": "Complete end-to-end system integration, comprehensive testing, performance optimization, and production deployment setup",
+        "details": "Perform comprehensive system integration testing covering all components: mobile app, admin dashboard, geofencing, AI analysis, and P2P network. Implement performance optimizations for 100,000+ users and 10,000+ concurrent connections with API response times under 200ms. Set up production deployment with multi-region capability, automated backup systems, disaster recovery procedures, and 99.9% uptime monitoring. Configure security hardening with end-to-end encryption, penetration testing, and GDPR compliance measures. Create comprehensive documentation, user training materials, and operational runbooks.",
+        "testStrategy": "Execute load testing with 100,000+ simulated users, perform security penetration testing, validate disaster recovery procedures, test offline emergency scenarios in controlled environments, verify GDPR compliance features, and conduct real-world emergency simulation testing.",
+        "priority": "high",
+        "dependencies": [
+          8,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "End-to-End System Integration Testing",
+            "description": "Perform comprehensive integration testing across all system components including mobile app, admin dashboard, geofencing, AI analysis, and P2P network",
+            "dependencies": [],
+            "details": "Set up integration testing environment, create test scenarios covering all component interactions, validate data flow between mobile app and backend services, test geofencing integration with location services, verify AI analysis pipeline integration, and ensure P2P network connectivity across platforms",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Performance Optimization for Scale",
+            "description": "Implement performance optimizations to support 100,000+ users and 10,000+ concurrent connections with API response times under 200ms",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "Optimize database queries and indexing, implement connection pooling and load balancing, configure Redis caching layers, optimize API endpoints for sub-200ms response times, implement horizontal scaling strategies, and fine-tune geofencing service performance",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Load Testing and Performance Validation",
+            "description": "Execute comprehensive load testing with 100,000+ simulated users to validate system performance under stress",
+            "dependencies": [
+              "10.2"
+            ],
+            "details": "Set up load testing infrastructure using tools like K6 or Artillery, create realistic user simulation scenarios, test concurrent connection limits, validate API response times under load, monitor system resource utilization, and document performance bottlenecks",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Multi-Region Production Deployment Setup",
+            "description": "Configure production deployment infrastructure with multi-region capability and automated deployment pipelines",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Set up AWS/GCP multi-region infrastructure, configure load balancers and CDN, implement CI/CD pipelines with automated testing, set up container orchestration with Kubernetes or Docker Swarm, configure environment-specific configurations, and implement blue-green deployment strategies",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Automated Backup and Disaster Recovery Systems",
+            "description": "Implement comprehensive backup systems and disaster recovery procedures with automated failover capabilities",
+            "dependencies": [
+              "10.4"
+            ],
+            "details": "Configure automated database backups with point-in-time recovery, set up file storage replication across regions, implement automated failover mechanisms, create disaster recovery runbooks, test backup restoration procedures, and configure monitoring for backup integrity",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Security Hardening and Encryption Implementation",
+            "description": "Implement end-to-end security hardening including encryption, secure communication protocols, and access controls",
+            "dependencies": [
+              "10.4"
+            ],
+            "details": "Configure TLS/SSL certificates for all endpoints, implement end-to-end encryption for sensitive data, set up API rate limiting and DDoS protection, configure secure key management systems, implement network security groups and firewalls, and enable security logging and monitoring",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Penetration Testing and Security Validation",
+            "description": "Conduct comprehensive penetration testing and security audits to validate system security measures",
+            "dependencies": [
+              "10.6"
+            ],
+            "details": "Perform automated security scanning using tools like OWASP ZAP, conduct manual penetration testing of all endpoints, test authentication and authorization mechanisms, validate data encryption implementation, test for common vulnerabilities (SQL injection, XSS, CSRF), and document security findings",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "GDPR Compliance and Privacy Implementation",
+            "description": "Implement GDPR compliance measures including data protection, user rights, and privacy controls",
+            "dependencies": [
+              "10.7"
+            ],
+            "details": "Implement data anonymization and pseudonymization features, create user data export and deletion mechanisms, set up consent management systems, implement privacy-by-design principles, create data processing audit logs, and establish legal compliance documentation",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 9,
+            "title": "Production Monitoring and Documentation",
+            "description": "Set up 99.9% uptime monitoring, create comprehensive documentation, and establish operational procedures",
+            "dependencies": [
+              "10.8"
+            ],
+            "details": "Configure application and infrastructure monitoring with Prometheus/Grafana or similar, set up alerting for critical system metrics, create comprehensive API documentation, develop user training materials and operational runbooks, implement logging aggregation and analysis, and establish incident response procedures",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-20T10:47:36.194Z",
+      "updated": "2025-09-20T10:47:36.194Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
