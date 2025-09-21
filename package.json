@@ -1,5 +1,53 @@
 {
+  "name": "smart-tourist-safety-monitoring",
+  "version": "1.0.0",
+  "description": "Smart Tourist Safety Monitoring System with geofencing, real-time tracking, and emergency features",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "dev": "npm run dev --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "type-check": "npm run type-check --workspaces",
+    "clean": "npm run clean --workspaces && rm -rf node_modules",
+    "mobile:dev": "npm run dev --workspace=packages/mobile",
+    "admin:dev": "npm run dev --workspace=packages/admin",
+    "backend:dev": "npm run dev --workspace=packages/backend",
+    "mobile:build": "npm run build --workspace=packages/mobile",
+    "admin:build": "npm run build --workspace=packages/admin",
+    "backend:build": "npm run build --workspace=packages/backend",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
   "dependencies": {
     "@supabase/mcp-server-supabase": "^0.5.5"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "author": "Your Name",
+  "license": "MIT"
 }

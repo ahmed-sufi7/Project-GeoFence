@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: smart-tourist-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  # Tile38 for geofencing
+  tile38:
+    image: tile38/tile38:latest
+    container_name: smart-tourist-tile38
+    ports:
+      - "9851:9851"
+    volumes:
+      - tile38_data:/data
+    command: tile38-server -d /data
+
+  # PostgreSQL (alternative to Supabase for local development)
+  postgres:
+    image: postgres:15-alpine
+    container_name: smart-tourist-postgres
+    environment:
+      POSTGRES_DB: smart_tourist_safety
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  redis_data:
+  tile38_data:
+  postgres_data:
