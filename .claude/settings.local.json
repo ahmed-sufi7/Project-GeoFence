@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(task-master set-status:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(task-master show:*)",
+      "Bash(supabase status:*)",
+      "WebFetch(domain:supabase.com)",
+      "Bash(supabase migration:*)"
     ],
     "deny": [],
     "ask": []
