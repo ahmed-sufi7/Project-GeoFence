@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # Production Redis with clustering support
+  redis:
+    image: redis:7-alpine
+    container_name: smart-tourist-redis-prod
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_prod_data:/data
+      - ./docker/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Production Tile38 with optimized settings for 10,000+ concurrent users
+  tile38:
+    image: tile38/tile38:latest
+    container_name: smart-tourist-tile38-prod
+    ports:
+      - "9851:9851"
+    volumes:
+      - tile38_prod_data:/data
+    command: >
+      tile38-server
+      -h 0.0.0.0
+      -p 9851
+      -d /data
+      --appendonly yes
+      --protected-mode no
+      --spinlock
+      -vv
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "tile38-cli", "ping"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+  # Production monitoring and metrics
+  tile38-exporter:
+    image: tile38/tile38-exporter:latest
+    container_name: smart-tourist-tile38-exporter
+    ports:
+      - "9090:9090"
+    environment:
+      - TILE38_URI=tile38:9851
+    depends_on:
+      - tile38
+    restart: always
+
+volumes:
+  redis_prod_data:
+    driver: local
+  tile38_prod_data:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -11,7 +11,7 @@ services:
       - redis_data:/data
     command: redis-server --appendonly yes
 
-  # Tile38 for geofencing
+  # Tile38 for geofencing - optimized for high-performance geospatial operations
   tile38:
     image: tile38/tile38:latest
     container_name: smart-tourist-tile38
@@ -19,7 +19,27 @@ services:
       - "9851:9851"
     volumes:
       - tile38_data:/data
-    command: tile38-server -d /data
+    command: >
+      tile38-server
+      -h 0.0.0.0
+      -p 9851
+      -d /data
+      --appendonly yes
+      --protected-mode no
+      -v
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+    healthcheck:
+      test: ["CMD", "tile38-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   # PostgreSQL (alternative to Supabase for local development)
   postgres:

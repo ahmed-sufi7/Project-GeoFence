@@ -6,7 +6,11 @@
       "Bash(task-master show:*)",
       "Bash(supabase status:*)",
       "WebFetch(domain:supabase.com)",
-      "Bash(supabase migration:*)"
+      "Bash(supabase migration:*)",
+      "Bash(docker-compose:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker exec:*)",
+      "Bash(npx tsx:*)"
     ],
     "deny": [],
     "ask": []
